@@ -1,34 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { lazy, Suspense } from 'react'
+import { Routes, Route, Link, NavLink } from 'react-router-dom'
+
+// Lazy loading - component dimuat hanya saat diakses
+const Home = lazy(() => import('./pages/Home'))
+const About = lazy(() => import('./pages/About'))
+const Contact = lazy(() => import('./pages/Contact'))
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <nav>
+        <NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>
+          Home
+        </NavLink>
+        <NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''}>
+          About
+        </NavLink>
+        <NavLink to="/contact" className={({ isActive }) => isActive ? 'active' : ''}>
+          Contact
+        </NavLink>
+      </nav>
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
+        </Routes>
+      </Suspense>
+    </div>
   )
 }
 
