@@ -4,6 +4,7 @@ import StatsCard from '../components/dashboard/StatsCard'
 import QuickActionButton from '../components/dashboard/QuickActionButton'
 import RecommendationPreview from '../components/dashboard/RecommendationPreview'
 import { useNavigate } from 'react-router-dom'
+import { Button } from '@mui/material'
 
 function DashboardPage() {
   const navigate = useNavigate()
@@ -30,21 +31,34 @@ function DashboardPage() {
         <div className="quick-actions">
           <h2>Quick Actions</h2>
           <div className="actions-grid">
-            <QuickActionButton 
-              icon="🗺️" 
-              label="Explore Destinations" 
+            <Button 
+              variant="contained" 
               onClick={() => navigate('/destinations')}
-            />
-            <QuickActionButton 
-              icon="📍" 
-              label="View Map" 
+              sx={{ 
+                backgroundColor: '#667eea', 
+                '&:hover': { backgroundColor: '#5568d3' } 
+              }}
+            >
+              🗺️ Explore Destinations
+            </Button>
+            <Button 
+              variant="outlined" 
               onClick={() => navigate('/explore-map')}
-            />
-            <QuickActionButton 
-              icon="⚙️" 
-              label="Update Preferences" 
+              sx={{ 
+                color: '#ff6b6b', 
+                borderColor: '#ff6b6b',
+                '&:hover': { borderColor: '#ee5a52', backgroundColor: '#fff5f5' }
+              }}
+            >
+              📍 View Map
+            </Button>
+            <Button 
+              variant="text" 
               onClick={() => navigate('/preferences')}
-            />
+              style={{ color: '#4ecdc4' }}
+            >
+              ⚙️ Update Preferences
+            </Button>
           </div>
         </div>
 

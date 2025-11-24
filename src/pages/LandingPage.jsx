@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import SearchBar from '../components/ui/SearchBar'
+import { Button } from '@mui/material'
 
 function LandingPage() {
   const handleSearch = (query) => {
@@ -14,8 +15,12 @@ function LandingPage() {
         <p>Personalized tourism recommendations based on your preferences</p>
         <SearchBar onSearch={handleSearch} placeholder="Search destinations..." />
         <div className="cta-buttons">
-          <Link to="/register" className="btn btn-primary">Get Started</Link>
-          <Link to="/destinations" className="btn btn-secondary">Explore Now</Link>
+          <Button component={Link} to="/register" variant="contained" color="primary">
+            Get Started
+          </Button>
+          <Button component={Link} to="/destinations" variant="outlined" color="secondary">
+            Explore Now
+          </Button>
         </div>
       </section>
 
