@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, Slider, Checkbox, FormControlLabel } from '@mui/material'
+import { Button, Slider, Checkbox, FormControlLabel, FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 import Navbar from '../components/layout/Navbar'
 
 function PreferencesPage() {
@@ -33,42 +33,54 @@ function PreferencesPage() {
           <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>Travel Preferences</h2>
           <form onSubmit={handlePreferencesSubmit}>
             <div style={{ marginBottom: '24px' }}>
-              <label style={{ display: 'block', marginBottom: '12px', fontWeight: '500' }}>Categories</label>
-              {['beach', 'nature', 'culture', 'adventure'].map(category => (
-                <FormControlLabel
-                  key={category}
-                  control={
-                    <Checkbox 
-                      checked={preferences[category]}
-                      onChange={() => handleCheckboxChange(category)}
-                    />
-                  }
-                  label={category.charAt(0).toUpperCase() + category.slice(1)}
-                  style={{ display: 'block', marginBottom: '8px' }}
-                />
-              ))}
+              <FormControl fullWidth>
+                <InputLabel id="categories-label">Categories</InputLabel>
+                <Select
+                  labelId="categories-label"
+                  id="categories-select"
+                  multiple
+                  value={Object.keys(preferences).filter(key => preferences[key] && key !== 'budget')}
+                  label="Categories"
+                  onChange={(e) => {
+                    const selected = e.target.value;
+                    setPreferences(prev => ({
+                      ...prev,
+                      beach: selected.includes('beach'),
+                      nature: selected.includes('nature'),
+                      culture: selected.includes('culture'),
+                      adventure: selected.includes('adventure')
+                    }));
+                  }}
+                  renderValue={(selected) => selected.map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(', ')}
+                >
+                  {['beach', 'nature', 'culture', 'adventure'].map((category) => (
+                    <MenuItem key={category} value={category}>
+                      <Checkbox checked={preferences[category]} />
+                      {category.charAt(0).toUpperCase() + category.slice(1)}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </div>
 
             <div style={{ marginBottom: '24px' }}>
-              <label style={{ display: 'block', marginBottom: '12px', fontWeight: '500' }}>Budget</label>
-              <select 
-                value={preferences.budget}
-                onChange={(e) => setPreferences(prev => ({ ...prev, budget: e.target.value }))}
-                style={{ 
-                  width: '100%', 
-                  padding: '12px', 
-                  border: '1px solid #ddd', 
-                  borderRadius: '8px',
-                  fontSize: '16px'
-                }}
-              >
-                <option value="low">Low Budget</option>
-                <option value="medium">Medium Budget</option>
-                <option value="high">High Budget</option>
-              </select>
+              <FormControl fullWidth>
+                <InputLabel id="budget-select-label">Budget</InputLabel>
+                <Select
+                  labelId="budget-select-label"
+                  id="budget-select"
+                  value={preferences.budget}
+                  label="Budget"
+                  onChange={(e) => setPreferences(prev => ({ ...prev, budget: e.target.value }))}
+                >
+                  <MenuItem value="low">Low Budget</MenuItem>
+                  <MenuItem value="medium">Medium Budget</MenuItem>
+                  <MenuItem value="high">High Budget</MenuItem>
+                </Select>
+              </FormControl>
             </div>
 
-            <Button variant="contained" type="submit" fullWidth>
+            <Button variant="contained" type="submit" fullWidth sx={{backgroundColor: '#2cae20ff', ":hover": {backgroundColor: '#206415ff'}}}>
               Save Preferences
             </Button>
           </form>

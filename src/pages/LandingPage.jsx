@@ -1,16 +1,9 @@
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-import { useState } from "react";
+import { BsPersonFill, BsMap } from "react-icons/bs";
+import { LuBrain } from "react-icons/lu";
 
 function LandingPage() {
-  const [searchQuery, setSearchQuery] = useState('')
-
-  const handleSearch = (e) => {
-    e.preventDefault()
-    console.log("Search:", searchQuery);
-    // TODO: Implement search logic
-  };
-
   return (
     <div style={{ minHeight: '100vh' }}>
       <section style={{
@@ -22,41 +15,9 @@ function LandingPage() {
         <h1 style={{ fontSize: '3rem', marginBottom: '1rem', fontWeight: 'bold' }}>
           Discover Your Perfect Destination
         </h1>
-        <p style={{ fontSize: '1.2rem', marginBottom: '2rem', opacity: 0.9 }}>
+        <p style={{ fontSize: '1.2rem', marginBottom: '3rem', opacity: 0.9 }}>
           Personalized tourism recommendations based on your preferences
         </p>
-        
-        {/* Search Bar */}
-        <form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'stretch', maxWidth: '600px', margin: '0 auto 2rem' }}>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search destinations..."
-            style={{ 
-              padding: '10px 16px',
-              fontSize: '16px',
-              border: '1px solid #ccc',
-              borderRadius: '4px 0 0 4px',
-              outline: 'none',
-              flex: 1
-            }}
-          />
-          <Button 
-            type="submit" 
-            variant="contained" 
-            sx={{ 
-              borderRadius: '0 4px 4px 0',
-              minWidth: '100px',
-              fontSize: '16px',
-              bgcolor: 'white',
-              color: '#667eea',
-              '&:hover': { bgcolor: '#f0f0f0' }
-            }}
-          >
-            Search
-          </Button>
-        </form>
 
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
           <Button
@@ -100,8 +61,11 @@ function LandingPage() {
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             textAlign: 'center'
           }}>
+            <div style={{ fontSize: '3rem', marginBottom: '1rem', color: '#667eea' }}>
+              <BsPersonFill />
+            </div>
             <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#667eea' }}>
-              🎯 Personalized
+              Personalized
             </h3>
             <p style={{ color: '#666', lineHeight: 1.6 }}>
               Get recommendations tailored to your preferences
@@ -114,8 +78,11 @@ function LandingPage() {
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             textAlign: 'center'
           }}>
+            <div style={{ fontSize: '3rem', marginBottom: '1rem', color: '#667eea' }}>
+              <BsMap />
+            </div>
             <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#667eea' }}>
-              🗺️ Interactive Maps
+              Interactive Maps
             </h3>
             <p style={{ color: '#666', lineHeight: 1.6 }}>
               Explore destinations with integrated maps
@@ -128,8 +95,11 @@ function LandingPage() {
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             textAlign: 'center'
           }}>
+            <div style={{ fontSize: '3rem', marginBottom: '1rem', color: '#667eea' }}>
+              <LuBrain />
+            </div>
             <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#667eea' }}>
-              ⚡ Smart Algorithm
+              Smart Algorithm
             </h3>
             <p style={{ color: '#666', lineHeight: 1.6 }}>
               Content-based filtering for accurate suggestions

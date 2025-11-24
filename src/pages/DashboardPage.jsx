@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@mui/material'
+import { BsPinMapFill, BsSuitHeartFill, BsStarFill, BsPersonFillGear, BsMap } from "react-icons/bs"
 import Navbar from '../components/layout/Navbar'
 
 function DashboardPage() {
@@ -35,9 +36,9 @@ function DashboardPage() {
           marginBottom: '40px'
         }}>
           {[
-            { title: 'Visited Places', value: '12', icon: '📍' },
-            { title: 'Favorites', value: '8', icon: '❤️' },
-            { title: 'Recommendations', value: '24', icon: '🎯' }
+            { title: 'Visited Places', value: '12', icon: <BsPinMapFill /> },
+            { title: 'Favorites', value: '8', icon: <BsSuitHeartFill /> },
+            { title: 'Recommendations', value: '24', icon: <BsStarFill /> }
           ].map((stat, index) => (
             <div key={index} style={{
               padding: '24px',
@@ -57,18 +58,21 @@ function DashboardPage() {
 
         {/* Quick Actions */}
         <div style={{ marginBottom: '40px' }}>
-          <h2 style={{ marginBottom: '20px', color: '#333' }}>Quick Actions</h2>
-          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+          <h2 style={{ marginBottom: '20px', color: '#333', textAlign: 'center' }}>Quick Actions</h2>
+          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
             <Button 
               variant="contained" 
               onClick={() => navigate('/destinations')}
               sx={{ 
                 backgroundColor: '#667eea', 
                 '&:hover': { backgroundColor: '#5568d3' },
-                padding: '12px 24px'
+                padding: '12px 24px',
+                display: 'flex',
+                gap: '8px',
+                alignItems: 'center'
               }}
             >
-              🗺️ Explore Destinations
+              <BsMap /> Explore Destinations
             </Button>
             <Button 
               variant="outlined" 
@@ -77,17 +81,26 @@ function DashboardPage() {
                 color: '#ff6b6b', 
                 borderColor: '#ff6b6b',
                 '&:hover': { borderColor: '#ee5a52', backgroundColor: '#fff5f5' },
-                padding: '12px 24px'
+                padding: '12px 24px',
+                display: 'flex',
+                gap: '8px',
+                alignItems: 'center'
               }}
             >
-              📍 View Map
+              <BsPinMapFill /> View Map
             </Button>
             <Button 
               variant="text" 
               onClick={() => navigate('/preferences')}
-              sx={{ color: '#4ecdc4', padding: '12px 24px' }}
+              sx={{ 
+                color: '#4ecdc4', 
+                padding: '12px 24px',
+                display: 'flex',
+                gap: '8px',
+                alignItems: 'center'
+              }}
             >
-              ⚙️ Update Preferences
+              <BsPersonFillGear /> Update Preferences
             </Button>
           </div>
         </div>

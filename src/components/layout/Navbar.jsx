@@ -10,7 +10,7 @@ function Navbar() {
       justifyContent: 'space-between',
       alignItems: 'center',
       padding: '1rem 2rem',
-      backgroundColor: '#1976d2',
+      backgroundColor: '#667eea',
       color: 'white',
       boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
       position: 'relative'
