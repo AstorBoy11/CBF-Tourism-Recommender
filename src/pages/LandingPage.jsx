@@ -1,24 +1,39 @@
-import { Link } from 'react-router-dom'
-import SearchBar from '../components/ui/SearchBar'
-import { Button } from '@mui/material'
+import { Link } from "react-router-dom";
+import SearchBar from "../components/ui/SearchBar";
+import { Button } from "@mui/material";
 
 function LandingPage() {
   const handleSearch = (query) => {
-    console.log('Search:', query)
+    console.log("Search:", query);
     // TODO: Implement search logic
-  }
+  };
 
   return (
     <div className="landing-page">
       <section className="hero">
         <h1>Discover Your Perfect Destination</h1>
         <p>Personalized tourism recommendations based on your preferences</p>
-        <SearchBar onSearch={handleSearch} placeholder="Search destinations..." />
+        <SearchBar
+          onSearch={handleSearch}
+          placeholder="Search destinations..."
+        />
         <div className="cta-buttons">
-          <Button component={Link} to="/register" variant="contained" color="primary">
+          <Button
+            component={Link}
+            to="/register"
+            variant="contained"
+            color="primary"
+            sx={{ padding: "12px 32px", margin: "0 16px 0 0" }}
+          >
             Get Started
           </Button>
-          <Button component={Link} to="/destinations" variant="outlined" color="secondary">
+          <Button
+            component={Link}
+            to="/destinations"
+            variant="outlined"
+            color="secondary"
+            sx={{ padding: "12px 32px", backgroundColor: "tomato" }}
+          >
             Explore Now
           </Button>
         </div>
@@ -42,7 +57,7 @@ function LandingPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
-export default LandingPage
+export default LandingPage;

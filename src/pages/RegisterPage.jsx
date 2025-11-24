@@ -13,9 +13,9 @@ function RegisterPage() {
 
   return (
     <PageContainer>
-      <div className="register-page">
+      <div className="register-page" style={{ backgroundColor: 'white' }}>
         <div className="register-container">
-          <h1>Create Account</h1>
+          <h1 style={{ color: 'black' }}>Create Account</h1>
           <RegisterForm onSubmit={handleRegister} />
           <p>Already have an account? <a href="/login">Login here</a></p>
         </div>
