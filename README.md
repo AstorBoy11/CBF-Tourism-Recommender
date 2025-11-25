@@ -73,3 +73,22 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek di lokal komputer Anda:
     Buka browser dan akses [http://localhost:3000](http://localhost:3000).
 
 ## wm Struktur Project
+```
+├── app/                  # Halaman aplikasi (Next.js App Router)
+│   ├── dashboard/        # Halaman dashboard user
+│   ├── destinations/     # Halaman list & detail wisata
+│   ├── evaluation/       # Halaman metrik evaluasi sistem
+│   ├── explore-map/      # Halaman peta interaktif
+│   └── preferences/      # Halaman setting preferensi
+├── components/           # Komponen UI Reusable (Navbar, Modal, dll)
+├── context/              # React Context (Auth, Recommendation, Preferences)
+├── hooks/                # Custom React Hooks
+├── services/             # Logic Bisnis & API Calls (Google Maps, Similarity)
+└── utils/                # Fungsi Utilitas (Algoritma TF-IDF, Cosine, MMR)
+```
+## 📝 Lisensi
+
+[MIT License](LICENSE)
+
+---
+Dibuat dengan ❤️ untuk Pariwisata Indonesia.
