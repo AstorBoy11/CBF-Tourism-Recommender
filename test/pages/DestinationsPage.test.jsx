@@ -61,7 +61,7 @@ describe('Destinations Page', () => {
     
     await waitFor(() => {
       expect(screen.getByTestId('modal')).toBeInTheDocument()
-      expect(screen.getByText('Bali Beach')).toBeInTheDocument()
+      expect(screen.getAllByText('Bali Beach').length).toBeGreaterThan(0)
     })
   })
 

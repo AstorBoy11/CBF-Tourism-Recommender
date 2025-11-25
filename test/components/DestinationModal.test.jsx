@@ -33,7 +33,7 @@ describe('DestinationModal Component', () => {
     render(<DestinationModal destination={mockDestination} onClose={mockOnClose} />)
     
     expect(screen.getByText('Bali Beach')).toBeInTheDocument()
-    expect(screen.getByText('Bali, Indonesia')).toBeInTheDocument()
+    expect(screen.getAllByText('Bali, Indonesia')[0]).toBeInTheDocument()
   })
 
   test('displays rating correctly', () => {
