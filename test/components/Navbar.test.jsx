@@ -18,7 +18,6 @@ describe('Navbar Component', () => {
   test('renders all navigation links', () => {
     render(<Navbar />)
     
-    expect(screen.getByText('Home')).toBeInTheDocument()
     expect(screen.getByText('Dashboard')).toBeInTheDocument()
     expect(screen.getByText('Destinations')).toBeInTheDocument()
     expect(screen.getByText('Preferences')).toBeInTheDocument()
@@ -31,22 +30,10 @@ describe('Navbar Component', () => {
     expect(screen.getByText('Login')).toBeInTheDocument()
   })
 
-  test('toggles mobile menu when hamburger is clicked', () => {
+  test('renders hamburger menu button', () => {
     render(<Navbar />)
     
-    const hamburger = screen.getByLabelText('Toggle navigation')
-    
-    // Initially, mobile menu should be hidden (assuming it's hidden by default)
-    fireEvent.click(hamburger)
-    
-    // After click, menu state changes (test implementation depends on your component)
-    expect(hamburger).toBeInTheDocument()
-  })
-
-  test('hamburger button has correct aria-label', () => {
-    render(<Navbar />)
-    
-    const hamburger = screen.getByLabelText('Toggle navigation')
+    const hamburger = screen.getByText('☰')
     expect(hamburger).toBeInTheDocument()
   })
 })

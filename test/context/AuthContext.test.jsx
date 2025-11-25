@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { AuthProvider, useAuth } from '@/context/AuthContext'
+import { AuthProvider, useAuthContext } from '@/context/AuthContext'
 
 // Test component to use the context
 function TestComponent() {
-  const { user, isAuthenticated } = useAuth()
+  const { user, isAuthenticated } = useAuthContext()
   
   return (
     <div>

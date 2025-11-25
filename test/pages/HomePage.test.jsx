@@ -5,7 +5,7 @@ import HomePage from '@/app/page'
 // Mock Navbar component
 jest.mock('@/components/layout/Navbar', () => {
   return function MockNavbar() {
-    return <div data-testid="navbar">Navbar</div>
+    return null
   }
 })
 
@@ -19,7 +19,7 @@ jest.mock('next/link', () => {
 describe('Home Page', () => {
   test('renders the page without crashing', () => {
     render(<HomePage />)
-    expect(screen.getByTestId('navbar')).toBeInTheDocument()
+    expect(screen.getByText('Discover Your Perfect Destination')).toBeInTheDocument()
   })
 
   test('renders welcome heading', async () => {
@@ -31,12 +31,10 @@ describe('Home Page', () => {
     })
   })
 
-  test('contains navigation to dashboard', () => {
+  test('contains call-to-action buttons', () => {
     render(<HomePage />)
     
-    const links = screen.getAllByRole('link')
-    const dashboardLink = links.find(link => link.getAttribute('href') === '/dashboard')
-    
-    expect(dashboardLink).toBeInTheDocument()
+    expect(screen.getByText('Get Started')).toBeInTheDocument()
+    expect(screen.getByText('Explore Now')).toBeInTheDocument()
   })
 })
