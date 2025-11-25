@@ -91,4 +91,4 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek di lokal komputer Anda:
 [MIT License](LICENSE)
 
 ---
-Dibuat dengan ❤️ untuk Pariwisata Indonesia.
+Dibuat  untuk Pariwisata Indonesia.
