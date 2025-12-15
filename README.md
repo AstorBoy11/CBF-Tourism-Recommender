@@ -132,4 +132,3 @@ Open [http://localhost:3000](http://localhost:3000)
 - **Authentication**: JWT + bcrypt
 - **Styling**: Tailwind CSS
 - **Language**: TypeScript
-
