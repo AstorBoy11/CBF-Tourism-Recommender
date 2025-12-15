@@ -15,7 +15,8 @@ export async function GET(request: NextRequest) {
     
     if (kategori) {
       where.kategori = {
-        hasSome: kategori.split(',')
+        contains: kategori,
+        mode: 'insensitive'
       };
     }
     
@@ -95,12 +96,12 @@ export async function POST(request: NextRequest) {
       data: {
         nama,
         deskripsi,
-        kategori,
+        kategori: Array.isArray(kategori) ? kategori.join(',') : kategori,
         lokasi,
         rating: rating || 0,
         harga,
         durasi,
-        fasilitas: fasilitas || [],
+        fasilitas: Array.isArray(fasilitas) ? fasilitas.join(',') : (fasilitas || ''),
         jamBuka: jamBuka || null,
         jamTutup: jamTutup || null,
         imageUrl: imageUrl || null,

@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
     }
     
     // Convert ke format DestinasiItem
-    const destinasiItems: DestinasiItem[] = allDestinasi.map(dest => ({
+    const destinasiItems: DestinasiItem[] = allDestinasi.map((dest: any) => ({
       id: dest.id,
       nama: dest.nama,
       deskripsi: dest.deskripsi,
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
       await prisma.preference.create({
         data: {
           userId,
-          kategori,
+          kategori: Array.isArray(kategori) ? kategori.join(',') : kategori,
           budget: budget.toLowerCase(),
           durasi: durasi.toLowerCase(),
           lokasi: lokasi || null
@@ -102,7 +102,7 @@ export async function POST(request: NextRequest) {
     
     // Gabungkan dengan score dan matched features
     const result = recommendations.map(rec => {
-      const fullDest = fullDestinasi.find(d => d.id === rec.destinasi.id);
+      const fullDest = fullDestinasi.find((d: any) => d.id === rec.destinasi.id);
       return {
         ...fullDest,
         score: rec.score,
@@ -174,7 +174,7 @@ export async function GET(request: NextRequest) {
     }
     
     // Convert ke format DestinasiItem
-    const destinasiItems: DestinasiItem[] = allDestinasi.map(dest => ({
+    const destinasiItems: DestinasiItem[] = allDestinasi.map((dest: any) => ({
       id: dest.id,
       nama: dest.nama,
       deskripsi: dest.deskripsi,
@@ -213,7 +213,7 @@ export async function GET(request: NextRequest) {
     
     // Gabungkan dengan score dan matched features
     const result = recommendations.map(rec => {
-      const fullDest = fullDestinasi.find(d => d.id === rec.destinasi.id);
+      const fullDest = fullDestinasi.find((d: any) => d.id === rec.destinasi.id);
       return {
         ...fullDest,
         score: rec.score,

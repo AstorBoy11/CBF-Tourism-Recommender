@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -24,7 +24,7 @@ model User {
 model Preference {
   id        String   @id @default(cuid())
   userId    String
-  kategori  String[] // outdoor, kuliner, budaya, alam, religi, dll
+  kategori  String   // comma-separated: outdoor, kuliner, budaya, alam, religi, dll
   budget    String   // murah, sedang, mahal
   durasi    String   // singkat, menengah, panjang
   lokasi    String?  // preferensi lokasi
@@ -39,13 +39,14 @@ model Preference {
 model Destinasi {
   id          String   @id @default(cuid())
   nama        String
-  deskripsi   String   @db.Text
-  kategori    String[] // outdoor, kuliner, budaya, alam, religi, dll
+  deskripsi   String
+  kategori    String   // comma-separated: outdoor, kuliner, budaya, alam, religi, dll
   lokasi      String
   rating      Float    @default(0)
   harga       Int      // dalam rupiah
   durasi      Int      // dalam jam
-  fasilitas   String[] // parkir, toilet, wifi, dll
+  fasilitas   String   // comma-separated: parkir, toilet, wifi, dll
+  tags        String?  // comma-separated tags
   jamBuka     String?
   jamTutup    String?
   imageUrl    String?
@@ -54,6 +55,5 @@ model Destinasi {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  @@index([kategori])
   @@index([lokasi])
 }

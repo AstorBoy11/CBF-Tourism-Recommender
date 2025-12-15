@@ -2,18 +2,20 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Star, MapPin, Clock } from 'lucide-react';
 
 interface Destinasi {
   id: string;
   nama: string;
   deskripsi: string;
-  kategori: string[];
+  kategori: string;  // comma-separated
   lokasi: string;
   rating: number;
   harga: number;
   durasi: number;
-  fasilitas: string[];
+  fasilitas: string;  // comma-separated
   imageUrl?: string;
+  tags?: string;  // comma-separated
 }
 
 export default function DestinasiList() {
@@ -91,7 +93,7 @@ export default function DestinasiList() {
               value={filter.kategori}
               onChange={(e) => setFilter({...filter, kategori: e.target.value})}
               placeholder="outdoor, kuliner, budaya..."
-              className="w-full px-3 py-2 border rounded-md"
+              className="w-full px-3 py-2 border rounded-md text-slate-900 font-medium placeholder:text-slate-500"
             />
           </div>
           
@@ -102,7 +104,7 @@ export default function DestinasiList() {
               value={filter.lokasi}
               onChange={(e) => setFilter({...filter, lokasi: e.target.value})}
               placeholder="Cari lokasi..."
-              className="w-full px-3 py-2 border rounded-md"
+              className="w-full px-3 py-2 border rounded-md text-slate-900 font-medium placeholder:text-slate-500"
             />
           </div>
           
@@ -113,7 +115,7 @@ export default function DestinasiList() {
               value={filter.minHarga}
               onChange={(e) => setFilter({...filter, minHarga: e.target.value})}
               placeholder="0"
-              className="w-full px-3 py-2 border rounded-md"
+              className="w-full px-3 py-2 border rounded-md text-slate-900 font-medium placeholder:text-slate-500"
             />
           </div>
           
@@ -124,7 +126,7 @@ export default function DestinasiList() {
               value={filter.maxHarga}
               onChange={(e) => setFilter({...filter, maxHarga: e.target.value})}
               placeholder="1000000"
-              className="w-full px-3 py-2 border rounded-md"
+              className="w-full px-3 py-2 border rounded-md text-slate-900 font-medium placeholder:text-slate-500"
             />
           </div>
         </div>
@@ -164,7 +166,7 @@ export default function DestinasiList() {
                 <h3 className="text-xl font-bold mb-2">{dest.nama}</h3>
                 
                 <div className="flex items-center mb-2">
-                  <span className="text-yellow-500 mr-1">★</span>
+                  <Star size={16} className="text-yellow-500 mr-1 fill-yellow-500" />
                   <span className="text-sm">{dest.rating.toFixed(1)}</span>
                 </div>
                 
@@ -173,16 +175,16 @@ export default function DestinasiList() {
                 </p>
                 
                 <div className="flex flex-wrap gap-2 mb-3">
-                  {dest.kategori.slice(0, 3).map((kat, idx) => (
+                  {dest.kategori.split(',').slice(0, 3).map((kat: string, idx: number) => (
                     <span key={idx} className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
-                      {kat}
+                      {kat.trim()}
                     </span>
                   ))}
                 </div>
                 
                 <div className="flex justify-between items-center text-sm text-gray-600 mb-3">
-                  <span>📍 {dest.lokasi}</span>
-                  <span>⏱ {dest.durasi} jam</span>
+                  <span className="flex items-center gap-1"><MapPin size={14} /> {dest.lokasi}</span>
+                  <span className="flex items-center gap-1"><Clock size={14} /> {dest.durasi} jam</span>
                 </div>
                 
                 <div className="flex justify-between items-center">

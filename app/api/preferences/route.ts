@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
     const preference = await prisma.preference.create({
       data: {
         userId: payload.userId,
-        kategori,
+        kategori: Array.isArray(kategori) ? kategori.join(',') : kategori,
         budget: budget.toLowerCase(),
         durasi: durasi.toLowerCase(),
         lokasi: lokasi || null

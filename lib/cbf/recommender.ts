@@ -10,15 +10,15 @@ export interface DestinasiItem {
   id: string;
   nama: string;
   deskripsi: string;
-  kategori: string[];
+  kategori: string;  // comma-separated
   lokasi: string;
   harga: number;
   durasi: number;
-  fasilitas: string[];
+  fasilitas: string; // comma-separated
 }
 
 export interface UserPreference {
-  kategori: string[];
+  kategori: string[];  // tetap array dari frontend
   budget: string;
   durasi: string;
   lokasi?: string;
@@ -43,12 +43,15 @@ export class CBFRecommender {
    * Membuat text representation dari destinasi untuk TF-IDF
    */
   private createDestinasiText(destinasi: DestinasiItem): string {
+    const kategoriArray = destinasi.kategori.split(',').map(k => k.trim());
+    const fasilitasArray = destinasi.fasilitas.split(',').map(f => f.trim());
+    
     const parts = [
       destinasi.nama,
       destinasi.deskripsi,
-      ...destinasi.kategori,
+      ...kategoriArray,
       destinasi.lokasi,
-      ...destinasi.fasilitas
+      ...fasilitasArray
     ];
     
     return parts.join(' ');
@@ -115,10 +118,11 @@ export class CBFRecommender {
     preference: UserPreference
   ): string[] {
     const matched: string[] = [];
+    const kategoriArray = destinasi.kategori.split(',').map(k => k.trim().toLowerCase());
     
     // Check kategori match
     const kategoriMatch = preference.kategori.filter(k => 
-      destinasi.kategori.includes(k)
+      kategoriArray.includes(k.toLowerCase())
     );
     if (kategoriMatch.length > 0) {
       matched.push(`Kategori: ${kategoriMatch.join(', ')}`);

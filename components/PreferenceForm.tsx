@@ -225,7 +225,7 @@ export default function PreferenceForm({ onSuccess }: PreferenceFormProps) {
             value={formData.lokasi}
             onChange={(e) => setFormData({...formData, lokasi: e.target.value})}
             placeholder="Contoh: Yogyakarta, Bali, Jakarta..."
-            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent text-slate-900 font-medium placeholder:text-slate-500"
           />
         </div>
 
