@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  preferences Preference[]
+}
+
+model Preference {
+  id        String   @id @default(cuid())
+  userId    String
+  kategori  String[] // outdoor, kuliner, budaya, alam, religi, dll
+  budget    String   // murah, sedang, mahal
+  durasi    String   // singkat, menengah, panjang
+  lokasi    String?  // preferensi lokasi
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Destinasi {
+  id          String   @id @default(cuid())
+  nama        String
+  deskripsi   String   @db.Text
+  kategori    String[] // outdoor, kuliner, budaya, alam, religi, dll
+  lokasi      String
+  rating      Float    @default(0)
+  harga       Int      // dalam rupiah
+  durasi      Int      // dalam jam
+  fasilitas   String[] // parkir, toilet, wifi, dll
+  jamBuka     String?
+  jamTutup    String?
+  imageUrl    String?
+  latitude    Float?
+  longitude   Float?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([kategori])
+  @@index([lokasi])
+}
